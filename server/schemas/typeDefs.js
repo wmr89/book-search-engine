@@ -1,4 +1,3 @@
-//Do virtuals pass in typeDefs?
 const typeDefs = `
 type User {
     _id: ID
@@ -10,31 +9,37 @@ type User {
 }
 
 type Book {
-    bookId: ID
+    bookId: String
     authors: [String]
     description: String
     title: String
-    image:
-    link:
+    image: String
+    link: String
 }
 
 type Auth {
-    token: ?????
+    token: String
     user: User
+}
+
+input BookInput {
+    bookId: String
+    authors: [String]
+    description: String
+    title: String
+    image: String
+    link: String
+
 }
 
 type Query {
     me: User
-
   }
+  
   type Mutation {
-    login(email: email, password: password): Auth????
-    addUser(username: username, email: email, password: password): Auth
-    saveBook([Author], description, title, bookId, Image, link): User (input type?)
+    login(email: String!, password: String!): Auth
+    addUser(username: String!, email: String!, password: String!): Auth
+    saveBook(bookInput:BookInput): User
     removeBook(bookId): User
-
 }
-
-
-
 `
