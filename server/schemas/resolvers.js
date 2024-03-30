@@ -1,5 +1,5 @@
-const { bookSchema, User } = require("../models");
-const { AuthenticationError } = require("../utils/auth");
+const { User } = require("../models");
+const { signToken, AuthenticationError } = require("../utils/auth");
 
 const resolvers = {
   Query: {
@@ -13,14 +13,15 @@ const resolvers = {
   Mutation: {
     addUser: async (parent, args) => {
       const user = await User.create(args);
-      return user;
+      const token = signToken(user)
+      return {token, user};
     },
-    saveBook: async (parent, { bookInput }, context) => {
+    saveBook: async (parent, { bookData }, context) => {
       if (context.user) {
         return User.findOneAndUpdate(
           { _id: context.user._id },
           {
-            $addToSet: { savedBooks: bookInput },
+            $addToSet: { savedBooks: bookData },
           },
           {
             new: true,
@@ -30,18 +31,18 @@ const resolvers = {
       throw AuthenticationError;
     },
     removeBook: async (parent, { bookId }, context) => {
-        if (context.user) {
+      if (context.user) {
         return User.findOneAndUpdate(
-        { _id: context.user._id },
-        {
-          $pull: { savedBooks: { bookId } },
-        },
-        {
-          new: true,
-        }
-      );
+          { _id: context.user._id },
+          {
+            $pull: { savedBooks: { bookId } },
+          },
+          {
+            new: true,
+          }
+        );
+      }
       throw AuthenticationError;
-    }
     },
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
