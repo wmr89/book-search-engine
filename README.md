@@ -19,15 +19,35 @@ No Installation required
 
 ## Usage
 
-Click [here](https://book-search-engine-v4fo.onrender.com/) to visit the book search engine.
+Click [here](https://book-search-engine1.onrender.com/) to visit the book search engine.
 
+![home-page](/assets/main-page.png)
 
+Click "Login/Sign Up" to create a user profile or to login to an existing profile.
 
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative file path, add it to your README using the following syntax:
+![Login Page](/assets/login-page.png)
 
-![alt text](assets/images/screenshot.png)
+Enter a book title into the search bar to search for books
+
+Click 'Save this Book!' to save the book to your profile
+
+![Search Page](/assets/book-search.png)
+
+Click 'See Your Books' to see books you have saved
+
+Click 'Delete this Book' to remove a book from your profile.
+
+![Saved Books Page](/assets/saved-books.png)
+
 
 ## Credits
+MongoDB
+Express.js
+React.js
+Node.js
+Apollo Server
+GraphQL
+
 Starter Code: https://github.com/coding-boot-camp/solid-broccoli
 Tutor Session with Vinnie Lopez
 Office hours with Karina Guerrero Fernandez
